@@ -7,7 +7,8 @@
   "scripts": {
     "watch": "webpack --watch",
     "serve": "webpack serve",
-    "build": "webpack build"
+    "build": "webpack build",
+    "format": "prettier --config .prettierrc --write ./src/**/*"
   },
   "dependencies": {
     "@babel/core": "7.15.0",
@@ -19,6 +20,7 @@
     "babel-loader": "8.2.2",
     "css-loader": "6.2.0",
     "html-webpack-plugin": "5.3.2",
+    "prettier": "2.3.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "sass": "1.37.5",
