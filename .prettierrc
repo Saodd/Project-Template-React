@@ -3,6 +3,6 @@
   "singleQuote": true,
   "trailingComma": "all",
   "arrowParens": "always",
-  "requirePragma": true,
+  "requirePragma": false,
   "semi": true
 }
