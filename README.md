@@ -9,3 +9,4 @@
 3. 支持 `babel`。
 4. 支持 三方库的CDN加速。
 5. 支持 `webpack`多线程编译。
+6. 定义了一些`prittier`规则。至于`eslint`只是安装了，请自己根据需要init一下。
