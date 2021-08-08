@@ -1,0 +1,30 @@
+name: Webpack
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Set up Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+          cache: 'yarn'
+
+      - name: Build Frontend
+        run: yarn install --production && yarn run build && mv ./dist ./public && cp ./public/index.html ./public/404.html
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3.6.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          user_name: Lewin Lan
+          user_email: lewin.lan.cn@gmail.com
