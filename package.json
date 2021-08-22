@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "watch": "webpack --watch",
-    "serve": "webpack serve",
+    "serve": "webpack serve --host 0.0.0.0",
     "build": "webpack build",
     "format": "prettier --config .prettierrc --write ./src/**/*"
   },
