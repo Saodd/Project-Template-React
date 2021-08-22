@@ -9,4 +9,10 @@
 3. 支持 `babel`。
 4. 支持 三方库的CDN加速。
 5. 支持 `webpack`多线程编译。
-6. 定义了一些`prittier`规则。至于`eslint`只是安装了，请自己根据需要init一下。
+6. 定义了一些`prittier`和`eslint`规则。
+
+## 温馨提醒
+
+1. 记得改 HTML title.
+2. 记得改 package.json 中的项目名。
+3. （IDEA用户）记得调一下prettier设置。
