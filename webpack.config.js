@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
 const threadLoader = require('thread-loader');
 
 threadLoader.warmup(
@@ -28,6 +29,11 @@ module.exports = {
       template: './src/index.html',
       favicon: './src/favicon.ico',
     }),
+    new CopyPlugin({
+      patterns: [
+        { from: "static", to: "." },
+      ],
+    }),
   ],
   mode: 'production',
   // devtool: "inline-source-map",
@@ -47,6 +53,9 @@ module.exports = {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         include: path.resolve('src'),
         type: 'asset/resource',
+        generator: {
+          filename: '_asset/[hash][ext][query]',
+        },
       },
       {
         test: /\.(js|jsx|ts|tsx)$/,
