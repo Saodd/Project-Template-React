@@ -5,15 +5,7 @@ const threadLoader = require('thread-loader');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
-threadLoader.warmup(
-  {},
-  [
-    'babel-loader',
-    'style-loader',
-    'css-loader',
-    'sass-loader',
-  ],
-);
+threadLoader.warmup({}, ['babel-loader', 'style-loader', 'css-loader', 'sass-loader']);
 
 module.exports = {
   entry: {
@@ -33,9 +25,7 @@ module.exports = {
       chunks: ['index'],
     }),
     new CopyPlugin({
-      patterns: [
-        { from: 'static', to: '.' },
-      ],
+      patterns: [{ from: 'static', to: '.' }],
     }),
   ],
   module: {
@@ -43,12 +33,7 @@ module.exports = {
       {
         test: /\.s[ac]ss$/i,
         include: path.resolve('src'),
-        use: [
-          'thread-loader',
-          'style-loader',
-          { loader: 'css-loader', options: { modules: true } },
-          'sass-loader',
-        ],
+        use: ['thread-loader', 'style-loader', { loader: 'css-loader', options: { modules: true } }, 'sass-loader'],
       },
       {
         test: /\.css$/,
@@ -69,7 +54,11 @@ module.exports = {
           'thread-loader',
           {
             loader: 'babel-loader',
-            options: { presets: ['@babel/env', '@babel/preset-react', '@babel/preset-typescript'] },
+            options: {
+              presets: ['@babel/env', '@babel/preset-react', '@babel/preset-typescript'],
+              cacheDirectory: true,
+              plugins: [['@babel/plugin-proposal-decorators', { legacy: true }]],
+            },
           },
         ],
       },
@@ -96,8 +85,8 @@ module.exports = {
     maxAssetSize: 1021 * 1024,
   },
   externals: {
-    'axios': 'axios',
-    'react': 'React',
+    axios: 'axios',
+    react: 'React',
     'react-dom': 'ReactDOM',
   },
 };
