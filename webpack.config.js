@@ -2,6 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const threadLoader = require('thread-loader');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 threadLoader.warmup(
   {},
@@ -49,6 +51,10 @@ module.exports = {
         ],
       },
       {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+      },
+      {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         include: path.resolve('src'),
         type: 'asset/resource',
@@ -78,10 +84,12 @@ module.exports = {
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
+          enforce: true,
           name: 'vendors',
         },
       },
     },
+    minimizer: [`...`, new CssMinimizerPlugin()],
   },
   performance: {
     maxEntrypointSize: 1024 * 1024,
