@@ -1,6 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyPlugin = require("copy-webpack-plugin");
+const CopyPlugin = require('copy-webpack-plugin');
 const threadLoader = require('thread-loader');
 
 threadLoader.warmup(
@@ -28,15 +28,14 @@ module.exports = {
       title: 'Project Template: React',
       template: './src/index.html',
       favicon: './src/favicon.ico',
+      chunks: ['index'],
     }),
     new CopyPlugin({
       patterns: [
-        { from: "static", to: "." },
+        { from: 'static', to: '.' },
       ],
     }),
   ],
-  mode: 'production',
-  // devtool: "inline-source-map",
   module: {
     rules: [
       {
