@@ -5,6 +5,7 @@ export function App(): JSX.Element {
   return (
     <div>
       <p className={styles.myClass}>Hello, Lewin!</p>
+      <p>当前版本为{__NPM_VERSION__}</p>
     </div>
   );
 }

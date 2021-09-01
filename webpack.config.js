@@ -4,7 +4,6 @@ const CopyPlugin = require('copy-webpack-plugin');
 const threadLoader = require('thread-loader');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const webpack = require('webpack');
 
 threadLoader.warmup({}, ['babel-loader', 'style-loader', 'css-loader', 'sass-loader']);
 
@@ -19,9 +18,6 @@ module.exports = {
     clean: true,
   },
   plugins: [
-    new webpack.DefinePlugin({
-      __NPM_VERSION__: JSON.stringify(require("./package.json").version),
-    }),
     new HtmlWebpackPlugin({
       title: 'Project Template: React',
       template: './src/index.html',
