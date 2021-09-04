@@ -27,6 +27,7 @@ module.exports = {
     new CopyPlugin({
       patterns: [{ from: 'static', to: '.' }],
     }),
+    new MiniCssExtractPlugin(),
   ],
   module: {
     rules: [
