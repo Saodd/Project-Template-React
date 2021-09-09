@@ -9,7 +9,7 @@ threadLoader.warmup({}, ['babel-loader', 'style-loader', 'css-loader', 'sass-loa
 
 module.exports = {
   entry: {
-    index: './src/index.tsx',
+    index: './src/index.ts',
   },
   target: ['web', 'es5'],
   output: {

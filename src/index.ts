@@ -4,7 +4,7 @@ import * as ReactDOM from 'react-dom';
 import { App } from './app';
 
 function main() {
-  ReactDOM.render(<App />, document.querySelector('#root'));
+  ReactDOM.render(React.createElement(App), document.querySelector('#root'));
 }
 
 main();
