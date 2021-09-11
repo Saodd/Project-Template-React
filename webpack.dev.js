@@ -14,4 +14,15 @@ module.exports = merge(common, {
       __NPM_VERSION__: JSON.stringify(require('./package.json').version),
     }),
   ],
+  devServer: {
+    host: '0.0.0.0',
+    port: 8080,
+    client: {
+      webSocketURL: 'ws://localhost:8080/ws',
+    },
+    historyApiFallback: {
+      disableDotRule: true,
+    },
+    allowedHosts: 'all',
+  },
 });
