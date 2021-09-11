@@ -8,7 +8,7 @@
     "watch": "webpack --watch --config webpack.dev.js",
     "serve": "webpack serve --config webpack.dev.js",
     "build": "webpack build --config webpack.prod.js",
-    "format": "prettier --config .prettierrc --write ./src/**/*"
+    "format": "prettier --config .prettierrc --no-error-on-unmatched-pattern --write ./src/**/*"
   },
   "dependencies": {
     "@babel/core": "7.15.0",
