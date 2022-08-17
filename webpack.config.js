@@ -1,11 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-const threadLoader = require('thread-loader');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-
-threadLoader.warmup({}, ['babel-loader', 'style-loader', 'css-loader', 'sass-loader']);
 
 module.exports = {
   entry: {
@@ -36,7 +33,11 @@ module.exports = {
       {
         test: /\.s[ac]ss$/i,
         include: path.resolve('src'),
-        use: ['thread-loader', 'style-loader', { loader: 'css-loader', options: { modules: true } }, 'sass-loader'],
+        use: [
+          MiniCssExtractPlugin.loader,
+          { loader: 'css-loader', options: { modules: true } },
+          { loader: 'sass-loader' },
+        ],
       },
       {
         test: /\.css$/,
@@ -54,7 +55,6 @@ module.exports = {
         test: /\.(js|jsx|ts|tsx)$/,
         include: path.resolve('src'),
         use: [
-          'thread-loader',
           {
             loader: 'babel-loader',
             options: {
@@ -71,8 +71,9 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js'],
   },
   optimization: {
-    runtimeChunk: 'single',
+    runtimeChunk: false,
     splitChunks: {
+      chunks: 'all',
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
@@ -87,9 +88,5 @@ module.exports = {
     maxEntrypointSize: 1024 * 1024,
     maxAssetSize: 1021 * 1024,
   },
-  externals: {
-    axios: 'axios',
-    react: 'React',
-    'react-dom': 'ReactDOM',
-  },
+  externals: {},
 };

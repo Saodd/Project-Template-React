@@ -24,5 +24,7 @@ module.exports = merge(common, {
       disableDotRule: true,
     },
     allowedHosts: 'all',
+    hot: false,
+    liveReload: true,
   },
 });
